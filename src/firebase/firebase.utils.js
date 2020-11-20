@@ -15,11 +15,11 @@ const config = {
   export const createUserProfileDocument = async (userAuth, additionalData) => {
     if (!userAuth) return;
     
-    const userRef = firestore.doc(`users/${ userAuth.uid }`);
+    const userRef = firestore.doc(`users/${ userAuth.uid }`); // para utilizar metodos CRUD
     
-    const snapShot = await userRef.get();
+    const snapShot = await userRef.get(); // representa la data
 
-    if(!snapShot.exists) {
+    if(!snapShot.exists) { // si no existe la data, crea a un usuario en ese lugar (el signin y signout lo ignora, solo entra en signup)
       const { displayName, email } = userAuth;
       const createdAt = new Date();
 
